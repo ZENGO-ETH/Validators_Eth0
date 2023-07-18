@@ -16,19 +16,19 @@ services:
     image: gcr.io/prysmaticlabs/prysm/validator:latest
     container_name: generate_validator_keys
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=dafenshi
     volumes:
       - $HOME/.eth2validators:/data
-    command: accounts create --keystore-path=/data --password=$PASSWORD
+    command: accounts create --keystore-path=/data --password=dafenshi
 
   view_public_key:
     image: gcr.io/prysmaticlabs/prysm/validator:latest
     container_name: view_public_key
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=dafenshi
     volumes:
       - $HOME/.eth2validators:/data
-    command: accounts keys --keystore-path=/data --password=$PASSWORD
+    command: accounts keys --keystore-path=/data --password=dafenshi
 
   validator_node:
     image: gcr.io/prysmaticlabs/prysm/validator:latest
@@ -39,10 +39,10 @@ services:
     links:
       - beacon_node
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=dafenshi
     volumes:
       - $HOME/.eth2validators:/data
-    command: --datadir=/data --keystore-path=/data --beacon-rpc-provider=beacon_node:4000 --password=$PASSWORD
+    command: --datadir=/data --keystore-path=/data --beacon-rpc-provider=beacon_node:4000 --password=dafenshi
 
   eth2stats:
     image: alethio/eth2stats-client:latest
